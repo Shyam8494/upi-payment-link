@@ -5,24 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting to UPI Payment...</title>
     <script>
-        function redirectToUPI() {
-            // UPI Payment Link
-            var upiLink = "upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS";
-            
-            // Try to open the UPI link
-            window.location.href = upiLink;
+        function isMobile() {
+            return /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        }
 
-            // If the UPI app doesn't open, show a fallback message
-            setTimeout(function() {
-                document.getElementById("fallback").style.display = "block";
-            }, 3000);
+        function redirectToUPI() {
+            var upiLink = "upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS";
+
+            if (isMobile()) {
+                // Redirect on mobile
+                window.location.href = upiLink;
+                
+                // Show fallback if redirection fails
+                setTimeout(function() {
+                    document.getElementById("fallback").style.display = "block";
+                }, 3000);
+            } else {
+                // Show message on desktop
+                document.getElementById("desktopMessage").style.display = "block";
+            }
         }
     </script>
 </head>
 <body onload="redirectToUPI()">
     <h2>Redirecting to UPI Payment...</h2>
-    <p>If nothing happens, click the link below:</p>
-    <a id="upiLink" href="upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS">Click here to Pay via UPI</a>
 
-    <div id="fallback" style="display: none; margin-top: 20px;">
-        <p>UPI app did not open? Please copy this link and open it m
+    <!-- Desktop Users See This Message -->
+    <div id="desktopMessage" style="display: none; text-align: center; font-size: 18px; font-weight: bold; color: re
+
