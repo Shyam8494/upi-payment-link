@@ -13,15 +13,15 @@
             var upiLink = "upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS";
 
             if (isMobile()) {
-                // Redirect on mobile
+                // Redirect only if the user is on a mobile device
                 window.location.href = upiLink;
-                
-                // Show fallback if redirection fails
+
+                // Show fallback message if the redirect fails
                 setTimeout(function() {
                     document.getElementById("fallback").style.display = "block";
                 }, 3000);
             } else {
-                // Show message on desktop
+                // Show message for desktop users
                 document.getElementById("desktopMessage").style.display = "block";
             }
         }
@@ -30,6 +30,21 @@
 <body onload="redirectToUPI()">
     <h2>Redirecting to UPI Payment...</h2>
 
-    <!-- Desktop Users See This Message -->
-    <div id="desktopMessage" style="display: none; text-align: center; font-size: 18px; font-weight: bold; color: re
+    <!-- Message for Desktop Users -->
+    <div id="desktopMessage" style="display: none; text-align: center; font-size: 18px; font-weight: bold; color: red;">
+        <p>🚨 **Please open this link from your Mobile Phone** to proceed with UPI payment. Thank You! 🙏</p>
+    </div>
+
+    <!-- UPI Payment Link for Mobile Users -->
+    <p>If nothing happens, click the link below:</p>
+    <a id="upiLink" href="upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS">Click here to Pay via UPI</a>
+
+    <!-- Fallback for Mobile Users if Redirection Fails -->
+    <div id="fallback" style="display: none; margin-top: 20px;">
+        <p>UPI app did not open? Please copy this link and open it manually in your UPI app.</p>
+        <input type="text" value="upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS" readonly onclick="this.select();">
+    </div>
+</body>
+</html>
+
 
