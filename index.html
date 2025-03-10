@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS">
-    <title>Redirecting...</title>
+    <title>Redirecting to UPI Payment...</title>
+    <script>
+        function redirectToUPI() {
+            // UPI Payment Link
+            var upiLink = "upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS";
+            
+            // Try to open the UPI link
+            window.location.href = upiLink;
+
+            // If the UPI app doesn't open, show a fallback message
+            setTimeout(function() {
+                document.getElementById("fallback").style.display = "block";
+            }, 3000);
+        }
+    </script>
 </head>
-<body>
-    <p>If you are not redirected, <a href="upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS">click here</a>.</p>
-</body>
-</html>
+<body onload="redirectToUPI()">
+    <h2>Redirecting to UPI Payment...</h2>
+    <p>If nothing happens, click the link below:</p>
+    <a id="upiLink" href="upi://pay?pa=Q86802208@ybl&pn=PhonePeMerchant&mc=5541&mode=02&purpose=00&orgid=180001&sign=MEYCIQCuZWo7yYmUHKWyGsdqFtOLsrS9/Ty4emfEK1imEwOQmgIhAO6PD8wlLg1HeI1w4I3KABt0ouO1KMoqJuCQdYTvCHlS">Click here to Pay via UPI</a>
+
+    <div id="fallback" style="display: none; margin-top: 20px;">
+        <p>UPI app did not open? Please copy this link and open it m
